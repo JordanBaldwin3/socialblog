@@ -14,6 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
+        //$posts = Post::orderBy('id')->get();
+        return view('posts.index')->with('posts', Post::all());
         //
     }
 
@@ -24,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -35,7 +37,21 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'body'=>'required',
+        ]);
+
+        $post = new Post();
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->user_id = $request->user()->id;
+    
+        $post->save();
+
+        session()->flash('success', 'Post successfully created!');
+
+        return redirect()->back()->with('success', 'Post successfully created!');
     }
 
     /**
@@ -47,6 +63,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //
+        return view('posts.show');
     }
 
     /**

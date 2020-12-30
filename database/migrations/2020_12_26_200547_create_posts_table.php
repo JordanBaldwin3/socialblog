@@ -15,11 +15,11 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->integer('likes');
-            $table->integer('dislikes');
+            $table->string('title');
+            $table->string('body',100);
             $table->timestamps();
 
-            $table->foreignId('user_id');
+            $table->unsignedBigInteger('user_id');
             
             $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('cascade')->onUpdate('cascade');

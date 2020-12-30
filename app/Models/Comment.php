@@ -18,6 +18,7 @@ class Comment extends Model
         'body',
     ];
 
+    // The user who comments
     public function user() {
         return $this->belongsTo('App\Models\User');
     }
