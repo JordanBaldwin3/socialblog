@@ -97,7 +97,6 @@ class PostController extends Controller
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->user_id = $request->user()->id;
-    
         $post->save();
 
         return redirect('/home')->with('success', 'Post successfully Updated!');
@@ -110,8 +109,12 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
+        $post = Post::find($id);
+        $post->delete();
+        return redirect('/home')->with('success', 'Post successfully deleted!');
+        
         //
     }
 }

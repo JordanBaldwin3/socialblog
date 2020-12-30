@@ -27,6 +27,7 @@
                 <button type="submit"class="btn btn-success">
                     Update Post
                 </button>
+                <a href="/posts/{{ $post->id }}" class="btn btn-primary">Back</a>
             </div>
         </form>
     </div>

@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
-Route::get('/index', [PostController::class, 'index'])->name('index');
+//Route::get('/index', [PostController::class, 'index'])->name('index');
 //show post create form
 Route::get('create-post', [PostController::class, 'create'])->name('create');
 //save new post
@@ -32,3 +32,5 @@ Route::get('posts/{posts}', [PostController::class, 'show'])->name('show');
 Route::get('posts/{posts}/edit', [PostController::class, 'edit'])->name('edit');
 //update post
 Route::post('posts/{posts}', [PostController::class, 'update'])->name('update');
+//delete post
+Route::post('posts/{posts}/destroy', [PostController::class, 'destroy'])->name('destroy');
