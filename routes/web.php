@@ -27,4 +27,8 @@ Route::get('create-post', [PostController::class, 'create'])->name('create');
 //save new post
 Route::post('create-post', [PostController::class, 'store'])->name('store');
 //show post
-Route::get('posts/{posts', [PostController::class, 'show'])->name('show');
+Route::get('posts/{posts}', [PostController::class, 'show'])->name('show');
+//edit post
+Route::get('posts/{posts}/edit', [PostController::class, 'edit'])->name('edit');
+//update post
+Route::post('posts/{posts}', [PostController::class, 'update'])->name('update');

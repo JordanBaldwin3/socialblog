@@ -14,8 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //$posts = Post::orderBy('id')->get();
-        return view('posts.index')->with('posts', Post::all());
+        $posts = Post::orderBy('created_at', 'desc')->paginate(3);
+        return view('posts.index')->with('posts', $posts);
         //
     }
 
@@ -38,7 +38,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required',
+            'title'=>'required|unique:posts',
             'body'=>'required',
         ]);
 
@@ -49,9 +49,7 @@ class PostController extends Controller
     
         $post->save();
 
-        session()->flash('success', 'Post successfully created!');
-
-        return redirect()->back()->with('success', 'Post successfully created!');
+        return redirect('/home')->with('success', 'Post successfully created!');
     }
 
     /**
@@ -60,10 +58,11 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
         //
-        return view('posts.show');
+        $post = Post::find($id);
+        return view('posts.show')->with('post',$post);
     }
 
     /**
@@ -72,8 +71,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
+        $post = Post::find($id);
+        return view('posts.edit',['post'=>$post]);
         //
     }
 
@@ -84,8 +85,22 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
+        
+        $request->validate([
+            'title'=>'required|unique:posts',
+            'body'=>'required',
+        ]);
+
+        $post = Post::find($id);
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->user_id = $request->user()->id;
+    
+        $post->save();
+
+        return redirect('/home')->with('success', 'Post successfully Updated!');
         //
     }
 

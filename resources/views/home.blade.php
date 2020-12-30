@@ -1,16 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
+<h1 class="text-center"> Timeline </h1>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Timeline') }}</div>
-
                 <div class="card-body">
-                @foreach($posts as $post)
-                    <h1 class="text-center my-5"> {{ $post->title}}</h1>
-                @endforeach
+                @if (count($posts) > 0)
+                    @foreach($posts as $post)
+                        <h1 class="text-center my-5">
+                            <a href="/posts/{{ $post->id }}">{{ $post->title}}</a> 
+                        </h1>
+                        <small>Created on {{ $post->created_at }} by {{ $post->user_id }}</small>
+                    @endforeach
+                    {{ $posts->links('pagination::bootstrap-4')}}
+                @else
+                    <p>No posts found</p>
+                @endif
                 </div>
             </div>
         </div>
