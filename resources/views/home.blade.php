@@ -12,7 +12,10 @@
                         <h1 class="text-center my-5">
                             <a href="/posts/{{ $post->id }}">{{ $post->title}}</a> 
                         </h1>
-                        <small>Created on {{ $post->created_at }} by {{ $post->user_id }}</small>
+                        <div class="list-group">
+                            <small>Posted by {{ $post->user->name }}</small>
+                            <small>Created on {{ $post->created_at->format('M d,Y \a\t h:i a') }}</small>
+                        </div>         
                     @endforeach
                     {{ $posts->links('pagination::bootstrap-4')}}
                 @else

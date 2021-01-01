@@ -24,6 +24,6 @@ class Post extends Model
     }
 
     public function comments() {
-        return $this->hasMany('App\Models\Comment')->orderBy('id', 'body');
+        return $this->hasMany('App\Models\Comment');
     }
 }

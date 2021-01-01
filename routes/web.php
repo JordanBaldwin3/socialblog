@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,3 +35,5 @@ Route::get('posts/{posts}/edit', [PostController::class, 'edit'])->name('edit');
 Route::post('posts/{posts}', [PostController::class, 'update'])->name('update');
 //delete post
 Route::post('posts/{posts}/destroy', [PostController::class, 'destroy'])->name('destroy');
+// add new comment
+Route::get('comments/{comments}', [CommentController::class, 'store'])->name('comment.store');
