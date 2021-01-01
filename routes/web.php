@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,3 +38,9 @@ Route::post('posts/{posts}', [PostController::class, 'update'])->name('update');
 Route::post('posts/{posts}/destroy', [PostController::class, 'destroy'])->name('destroy');
 // add new comment
 Route::get('comments/{comments}', [CommentController::class, 'store'])->name('comment.store');
+// show profile create form
+Route::get('profiles', [ProfileController::class, 'create'])->name('profile.create');
+//save new profle
+Route::post('profiles', [ProfileController::class, 'store'])->name('profile.store');
+//show profile
+Route::get('profiles/{profiles}', [ProfileController::class, 'show'])->name('profile.show');

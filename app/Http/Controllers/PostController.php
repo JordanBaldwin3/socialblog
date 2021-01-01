@@ -97,7 +97,7 @@ class PostController extends Controller
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->user_id = $request->user()->id;
-        $post->save();
+        $post->push();
 
         return redirect('/home')->with('success', 'Post successfully Updated!');
         //
