@@ -6,7 +6,9 @@
     <div class="card-body">
         <form action="{{ route('profile.show', Auth::user()->id) }}" method="PROFILE">
             @csrf
-            
+            <div class="form-group text-center my-5">
+                <img src="{{url('/images')}}/{{ $profile->image->filename }}">
+            </div>
             <div class="form-group">
                 <h1> {{ Auth::user()->name }} </h1>
             </div>

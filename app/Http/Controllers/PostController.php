@@ -53,9 +53,13 @@ class PostController extends Controller
         if ($request->hasFile('image')) {
             //$request->image->getClientOriginalName();
             $image = new Image();
-            $image->filename = $request->image->store('public');
+            //$image->filename = $request->image->store('public');
+            $image->filename = time().'.'.$request->image->getClientOriginalExtension();
+            $request->image->move(public_path('images'), $image->filename);
+
             //$imageable = $image->imageable;
             $post->image()->save($image);
+            
         }
     
         //$post->save();
