@@ -24,6 +24,10 @@ class Post extends Model
     }
 
     public function comments() {
-        return $this->hasMany('App\Models\Comment');
+        return $this->hasMany('App\Models\Comment')->latest();
+    }
+
+    public function image() {
+        return $this->morphOne('App\Models\Image', 'imageable');
     }
 }

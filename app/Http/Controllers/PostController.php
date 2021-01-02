@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -46,8 +47,18 @@ class PostController extends Controller
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->user_id = $request->user()->id;
-    
+
         $post->save();
+
+        if ($request->hasFile('image')) {
+            //$request->image->getClientOriginalName();
+            $image = new Image();
+            $image->filename = $request->image->store('public');
+            //$imageable = $image->imageable;
+            $post->image()->save($image);
+        }
+    
+        //$post->save();
 
         return redirect('/home')->with('success', 'Post successfully created!');
     }

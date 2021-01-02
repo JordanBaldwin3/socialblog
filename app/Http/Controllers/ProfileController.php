@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profile;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -34,8 +35,17 @@ class ProfileController extends Controller
         $profile = new Profile();
         $profile->user_id = $request->user()->id;
         $profile->bio = $request->input('bio');
-    
+
         $profile->save();
+
+        if ($request->hasFile('image')) {
+            //$request->image->getClientOriginalName();
+            $image = new Image();
+            $image->filename = $request->image->store('public');
+            $profile->image()->save($image);
+        }
+    
+        //$profile->save();
 
         return redirect('/home')->with('success', 'Post successfully created!');
         //

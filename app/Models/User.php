@@ -49,7 +49,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Post');
     }
 
-    public function profiles() {
+    public function profile() {
         return $this->hasOne('App\Models\Profile');
     }
 }

@@ -4,7 +4,7 @@
 
 <div class="card card-default">
     <div class="card-body">
-        <form action="{{ route('profile.store') }}" method="POST">
+        <form action="{{ route('profile.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             
             <div class="form-group">

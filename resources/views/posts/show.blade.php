@@ -6,7 +6,12 @@
         <form action="{{ route('destroy', $post->id) }}" method="POST">
             @csrf
             <div class="form-group text-center my-5">
-                {!!$post->body!!}
+                <img src="{{asset('storage/app/')}}/{{ $post->image->filename }}">
+            </div>
+            <div class="form-group text-center my-5">
+                {{ $post->body }}
+                {{ $post->image->filename }}
+                {{asset('storage/app/')}}/{{ $post->image->filename }}
             </div>
             <div class="form-group text-center my-5">
                 <hr>
