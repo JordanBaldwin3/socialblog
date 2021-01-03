@@ -22,6 +22,11 @@
                 <label for="image">Image</label>
                 <input type="file" class="form-control" name="image" id="image">
             </div>
+            
+            @foreach($tags as $tag)
+                <input type="checkbox" id="tags" name="tags[]" multiple="multiple" value='{{ $tag->id }}'>
+                <label> {{ $tag->name }} </label><br>
+            @endforeach
 
             <div class="form-group">
                 <button type="submit"class="btn btn-success">

@@ -29,8 +29,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        $tag = Tag::all();
-        return view('posts.create')->with('tags', $tag);
+        $tags = Tag::all();
+        return view('posts.create')->with('tags', $tags);
     }
 
     /**
@@ -89,9 +89,17 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        
         $post = Post::find($id);
+
+        $tags = Tag::all();
+        // $tags2 = array();
+        // foreach ($tags as $tag) {
+        //     $tags2[$tags->id] = $tag->name;
+        // }
+
         if ($post->user == Auth::user() | Auth::user()->isAdmin()){
-            return view('posts.edit',['post'=>$post]);
+            return view('posts.edit',['post'=>$post])->with('tags', $tags);
         }
         return redirect('home');
         //
@@ -107,6 +115,7 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         
+        
         $request->validate([
             'title'=>'required|unique:posts',
             'body'=>'required',
@@ -117,6 +126,9 @@ class PostController extends Controller
         $post->body = $request->input('body');
         $post->user_id = $request->user()->id;
         $post->push();
+
+        $post->tags()->detach();
+        $post->tags()->sync($request->tags, false);
 
         return redirect('/home')->with('success', 'Post successfully Updated!');
         //

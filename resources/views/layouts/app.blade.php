@@ -69,7 +69,10 @@
                                     @if (Auth::user()->isAdmin())
                                         <a class="dropdown-item" href="/admin">
                                             {{ __('Admin Control') }}
-                                        </a>      
+                                        </a>
+                                        <a class="dropdown-item" href="/tags">
+                                            {{ __('Tags') }}
+                                        </a>       
                                     @else
                                     @endif
                                     @if (Auth::user()->profile)
