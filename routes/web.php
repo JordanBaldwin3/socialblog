@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TagController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,6 +45,7 @@ Route::middleware('auth')->group(function(){
     Route::post('profiles', [ProfileController::class, 'store'])->name('profile.store');
     //show profile
     Route::get('profiles/{profiles}', [ProfileController::class, 'show'])->name('profile.show');
+    
     Route::middleware('admin')->group(function(){
         // show admin panel
         Route::get('admin', [AdminController::class, 'index'])->name('admin');
@@ -53,6 +55,10 @@ Route::middleware('auth')->group(function(){
         Route::post('admin/{users}/admin', [AdminController::class, 'makeAdmin'])->name('admin.user');
         // Take admin from user
         Route::post('admin/{users}/demote', [AdminController::class, 'takeAdmin'])->name('demote.user');
-
+        // show tag page
+        Route::get('tags', [TagController::class, 'index'])->name('tag');
+        Route::post('tags', [TagController::class, 'store'])->name('store.tag');
+        // delete tag
+        Route::post('tags/{tags}', [TagController::class, 'destroy'])->name('delete.tag');
     });
 });

@@ -17,6 +17,12 @@
                 {{ $post->body }}
             </div>
             
+            <div class="form-group text-center my-5">
+                @foreach($post->tags as $tag)
+                    <li> {{ $tag->name }}</li>
+                @endforeach
+            </div>
+
             @if($post->user == Auth::user() | Auth::user()->isAdmin())
             <div class="form-group">
                 <a href="/posts/{{ $post->id }}/edit" class="btn btn-primary">Edit</a>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Image;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -28,7 +29,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $tag = Tag::all();
+        return view('posts.create')->with('tags', $tag);
     }
 
     /**
@@ -62,9 +64,7 @@ class PostController extends Controller
             $post->image()->save($image);
             
         }
-    
-        //$post->save();
-
+        $post->tags()->sync($request->tags, false);
         return redirect('/home')->with('success', 'Post successfully created!');
     }
 
