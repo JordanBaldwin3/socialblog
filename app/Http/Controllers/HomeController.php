@@ -28,4 +28,9 @@ class HomeController extends Controller
         return view('home')->with('posts', $posts);
         //return view('home')->with('posts', Post::all());;
     }
+
+    public function admin() 
+    {
+        return view('admin');
+    }
 }

@@ -9,18 +9,14 @@
             <div class="form-group text-center my-5">
                 <img src="{{url('/images')}}/{{ $profile->image->filename }}">
             </div>
-            <div class="form-group">
-                <h1> {{ Auth::user()->name }} </h1>
+            <div class="form-group text-center my-5">
+                <h1> {{ $profile->user->name }} </h1>
             </div>
 
-            <div class="form-group">
+            <div class="form-group text-center my-5">
                 <h3>{!!$profile->bio!!}</h3>
             </div>
 
-            <div class="form-group">
-                <label for="image">Image</label>
-                <input type="file" class="form-control" name="image" id="image">
-            </div>
         </form>
     </div>
 </div>

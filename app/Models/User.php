@@ -52,4 +52,7 @@ class User extends Authenticatable
     public function profile() {
         return $this->hasOne('App\Models\Profile');
     }
+    public function isAdmin() {
+        return $this->admin == 1;
+    }
 }

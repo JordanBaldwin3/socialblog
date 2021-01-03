@@ -11,18 +11,16 @@
             <div class="form-group text-center my-5">
                 {{ $post->body }}
             </div>
-            <div class="form-group text-center my-5">
-                <hr>
-                    <small>Created on {{ $post->created_at }}</small>
-                <hr>
-            </div>
+            @if($post->user == Auth::user() | Auth::user()->isAdmin())
             <div class="form-group">
                 <a href="/posts/{{ $post->id }}/edit" class="btn btn-primary">Edit</a>
-                <a href={{ url()->previous() }} class="btn btn-primary">Back</a>
+                
                 <button onclick="return confirm('Delete post?')" class="btn btn-danger">
                     Delete
                 </button>
             </div>
+            @else
+            @endif
         </form>
     </div>
     <div class="panel-body">
@@ -44,7 +42,7 @@
                         <p>{{ $comment->body }}</p>
                     </div>
                     <div class="list-group-item">
-                        <p>Posted by {{ $comment->user->name }}</p>
+                        <p>Posted by <a href="/profiles/{{ $comment->user->id }}"> {{ $comment->user->name }}</a></p>
                         <small>{{ $comment->created_at->format('M d,Y \a\t h:i a') }}</small>
                     </div>
                 </div>
