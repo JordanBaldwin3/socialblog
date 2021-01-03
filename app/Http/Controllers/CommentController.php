@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use Auth;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -68,8 +69,15 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comment $comment)
+    public function edit($id)
     {
+        $comment = Comment::find($id);
+
+        if ($comment->user == Auth::user() | Auth::user()->isAdmin()){
+            return view('/comment',['comment'=>$comment]);
+        }
+        return redirect('home');
+        //
         //
     }
 
@@ -80,9 +88,17 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'body'=>'required',
+        ]);
+
+        $comment = Comment::find($id);
+        $comment->body = $request->input('body');
+        $comment->push();
+
+        return redirect('/home')->with('success', 'Post successfully Updated!');
     }
 
     /**

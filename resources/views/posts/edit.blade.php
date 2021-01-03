@@ -29,10 +29,10 @@
             @endforeach
 
             <div class="form-group">
-                <button type="submit"class="btn btn-success">
+                <button type="submit"class="btn btn-outline-success">
                     Update Post
                 </button>
-                <a href="/posts/{{ $post->id }}" class="btn btn-primary">Back</a>
+                <a href="/posts/{{ $post->id }}" class="btn btn-outline-primary">Back</a>
             </div>
         </form>
     </div>

@@ -3,10 +3,10 @@
 @section('content')
 
 <div class="card card-default">
-    <div class="form-group text-center my-5">
+    <div class="jumbotron text-center my-3 bg-dark text-white">
         <h1>  Tag Control Panel </h1>
     </div>
-        <table class="table">
+        <table class="table text-center">
     <thead>
         <tr>
             <th scope="col">Tags</th>

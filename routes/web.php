@@ -39,6 +39,10 @@ Route::middleware('auth')->group(function(){
     Route::post('posts/{posts}/destroy', [PostController::class, 'destroy'])->name('destroy');
     // add new comment
     Route::get('comments/{comments}', [CommentController::class, 'store'])->name('comment.store');
+    // edit comment
+    Route::get('comments/{comments}/edit', [CommentController::class, 'edit'])->name('comment.edit');
+    // update comment
+    Route::post('comments/{comments}', [CommentController::class, 'update'])->name('comment.update');
     // show profile create form
     Route::get('profiles', [ProfileController::class, 'create'])->name('profile.create');
     //save new profle

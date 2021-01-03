@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <div class="page-header text-center my-5">
+    <div class="jumbotron text-center my-3 bg-dark text-white">
         <h1> 
             {{ $profile->user->name }}
         </h1>
@@ -16,7 +16,7 @@
         <form action="{{ route('profile.show', $profile->id) }}" method="PROFILE">
             @csrf
             @if($profile->image)
-            <div class="form-group text-center my-5">
+            <div class="form-group float-left my-5">
                 <img src="{{url('/images')}}/{{ $profile->image->filename }}" alt=" ">
             </div>
             @else
@@ -24,7 +24,7 @@
             
 
             <div class="form-group text-center my-5">
-                <h3>{!!$profile->bio!!}</h3>
+                <h1>{!!$profile->bio!!}</h1>
             </div>
 
         </form>

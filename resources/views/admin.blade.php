@@ -2,8 +2,8 @@
 
 @section('content')
 
-<div class="card card-default">
-    <div class="form-group text-center my-5">
+<div class="card card-default ">
+    <div class="jumbotron text-center my-3 bg-dark text-white">
         <h1>  Admin Control Panel </h1>
     </div>
 
