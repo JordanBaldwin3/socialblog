@@ -13,7 +13,7 @@
                             <a href="/posts/{{ $post->id }}">{{ $post->title}}</a> 
                         </h1>
                         <div class="list-group">
-                            <small>Posted by {{ $post->user->name }}</small>
+                            <small>Posted by <a href="/profiles/{{ $post->user->id }}"> {{ $post->user->name }}</a></small>
                             <small>Created on {{ $post->created_at->format('M d,Y \a\t h:i a') }}</small>
                         </div>         
                     @endforeach

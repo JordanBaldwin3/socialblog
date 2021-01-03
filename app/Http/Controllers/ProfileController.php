@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Profile;
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Auth;
 
 class ProfileController extends Controller
 {
@@ -16,6 +17,9 @@ class ProfileController extends Controller
      */
     public function create()
     {
+        if (Auth::user()->profile) {
+            return redirect('home'); 
+        }
         return view('profiles.create');
         //
     }

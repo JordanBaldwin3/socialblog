@@ -5,12 +5,18 @@
     <div>
         <form action="{{ route('destroy', $post->id) }}" method="POST">
             @csrf
+
+            @if($post->image)
             <div class="form-group text-center my-5">
-                <img src="{{url('/images')}}/{{ $post->image->filename }}">
+                <img src="{{url('/images')}}/{{ $post->image->filename }}" alt=" ">
             </div>
+            @else
+            @endif
+
             <div class="form-group text-center my-5">
                 {{ $post->body }}
             </div>
+            
             @if($post->user == Auth::user() | Auth::user()->isAdmin())
             <div class="form-group">
                 <a href="/posts/{{ $post->id }}/edit" class="btn btn-primary">Edit</a>

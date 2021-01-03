@@ -66,6 +66,12 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if (Auth::user()->isAdmin())
+                                        <a class="dropdown-item" href="/admin">
+                                            {{ __('Admin Control') }}
+                                        </a>      
+                                    @else
+                                    @endif
                                     @if (Auth::user()->profile)
                                         <a class="dropdown-item" href="/profiles/{{ Auth::user()->id }}">
                                             {{ __('Profile') }}

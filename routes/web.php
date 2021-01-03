@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,8 +45,14 @@ Route::middleware('auth')->group(function(){
     //show profile
     Route::get('profiles/{profiles}', [ProfileController::class, 'show'])->name('profile.show');
     Route::middleware('admin')->group(function(){
-        // show profile create form
-        Route::get('admin', [HomeController::class, 'admin'])->name('admin');
+        // show admin panel
+        Route::get('admin', [AdminController::class, 'index'])->name('admin');
+        // delete user
+        Route::post('admin/{users}/destroy', [AdminController::class, 'destroy'])->name('delete.user');
+        // Give admin to user
+        Route::post('admin/{users}/admin', [AdminController::class, 'makeAdmin'])->name('admin.user');
+        // Take admin from user
+        Route::post('admin/{users}/demote', [AdminController::class, 'takeAdmin'])->name('demote.user');
 
     });
 });

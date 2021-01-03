@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Auth;
 
 class PostController extends Controller
 {
@@ -89,7 +90,10 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('posts.edit',['post'=>$post]);
+        if ($post->user == Auth::user() | Auth::user()->isAdmin()){
+            return view('posts.edit',['post'=>$post]);
+        }
+        return redirect('home');
         //
     }
 

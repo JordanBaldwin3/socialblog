@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
+
 
 class HomeController extends Controller
 {
@@ -29,8 +31,9 @@ class HomeController extends Controller
         //return view('home')->with('posts', Post::all());;
     }
 
-    public function admin() 
-    {
-        return view('admin');
-    }
+    // public function admin() 
+    // {
+    //     $users = User::all();
+    //     return view('admin')->with('users', $users);
+    // }
 }
